@@ -80,7 +80,7 @@ const NewsData: NewsMeta[] = [
       "Purva Orient Grand Now at ₹9 Crore Onwards: What It Says About Remaining Inventory",
     slug: "purva-orient-grand-limited-inventory-9-crore-onwards-2026",
     excerpt:
-      "Puravankara's current published position for Purva Orient Grand is ₹9 crore onwards, against a launch range of ₹6.00 to ₹10.78 crore. Here is what that signals about the 97-home tower's remaining inventory, and what a purchase really costs.",
+      "The developer's published entry point has moved from ₹6.00 Cr at launch to ₹9 Cr. That gap is information: the 3 BHKs and the lower-floor 4 BHKs are largely gone, and what remains is the larger, higher-floor stock. What the shift means for a buyer, and what a ₹9 Cr home costs once GST, stamp duty and premiums are added.",
     metaTitle: "Purva Orient Grand Price 2026: ₹9 Crore Onwards | Inventory",
     metaDescription:
       "Purva Orient Grand is now listed at ₹9 crore onwards, pointing to larger, higher-floor homes. Launch prices, rate per sq ft, charges and live availability.",
@@ -99,11 +99,11 @@ const NewsData: NewsMeta[] = [
     /* Display */
     image: "/images/news-rooftop-club.webp",
     altText:
-      "Aerial render of The Rose & Cypress rooftop club at Purva Orient Grand, with the infinity pool, pool deck, rooftop lawn and terrace dining crowning the tower",
+      "Aerial render of The Rose & Cypress rooftop club with the infinity pool, pool deck, rooftop lawn and terrace dining crowning the tower",
     date: "2026-09-24",
     updatedAt: "2026-09-24",
     author: "Real Revenue",
-    category: "Project Update",
+    category: "Price & Inventory",
     readTime: "5 min read",
     featured: true,
     tags: [
@@ -139,7 +139,7 @@ const NewsData: NewsMeta[] = [
         "@type": "WebPage",
         "@id": `${SITE_URL}/news/purva-orient-grand-limited-inventory-9-crore-onwards-2026`,
       },
-      articleSection: "Project Update",
+      articleSection: "Price & Inventory",
       keywords:
         "Purva Orient Grand price, Purva Orient Grand availability, 4 BHK Lalbagh Road, luxury apartments central Bangalore, Puravankara",
       about: [projectEntity, developerEntity],
@@ -154,7 +154,7 @@ const NewsData: NewsMeta[] = [
       "Purva Orient Grand Is in Its Final Stages of Construction: What It Means for Buyers",
     slug: "purva-orient-grand-construction-final-stages-2026",
     excerpt:
-      "Puravankara's 97-home tower on Lal Bagh Main Road is in its final stages of construction, with a RERA-filed completion date of 30 June 2027. The occupancy certificate is not yet in. Here is what that means for buyers.",
+      "The MIVAN-cast tower on Lal Bagh Main Road is in its final stages, with completion filed for 30 June 2027 and the occupancy certificate still to come. What \"final stages\" covers, what the OC changes, and why buying this late in a project is a different decision from buying at launch.",
     metaTitle: "Purva Orient Grand Construction Status 2026 | Final Stages",
     metaDescription:
       "Purva Orient Grand is in its final stages of construction. RERA completion date 30 June 2027; occupancy certificate not yet received. What it means for buyers.",
@@ -173,7 +173,7 @@ const NewsData: NewsMeta[] = [
     /* Display */
     image: "/images/news-construction-update.webp",
     altText:
-      "Aerial construction-status photograph of the Purva Orient Grand tower's concrete frame on Lal Bagh Main Road, published by Puravankara, with Central Bengaluru's skyline behind",
+      "Aerial construction-status photograph of the Purva Orient Grand tower's concrete frame on Lal Bagh Main Road, published by Puravankara, with the Central Bengaluru skyline behind",
     date: "2026-09-21",
     updatedAt: "2026-09-21",
     author: "Real Revenue",
