@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Purva Orient Grand News & Project Updates | Lal Bagh Road",
+  title: "Purva Orient Grand News | Construction Status & Inventory Updates",
   description:
-    "Construction status, RERA milestones and inventory updates for Purva Orient Grand, Puravankara's 97-residence tower on Lal Bagh Main Road, Central Bengaluru.",
+    "Purva Orient Grand news: construction status, possession date, RERA milestones and what is still for sale at the 97-home tower on Lal Bagh Main Road.",
   keywords: [
-    "Purva Orient Grand news",
-    "Purva Orient Grand construction status",
-    "Purva Orient Grand price",
-    "Purva Orient Grand possession",
-    "Puravankara Lal Bagh",
+    "purva orient grand news",
+    "purva orient grand construction status",
+    "purva orient grand possession",
+    "purva orient grand",
+    "purva orient grand lalbagh",
+    "purva orient grand for sale",
+    "purva orient grand price",
+    "puravankara new launch",
+    "central bangalore real estate",
   ],
   alternates: {
     canonical: "https://purvaorientgrandlalbagh.com/news",
