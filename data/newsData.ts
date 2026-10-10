@@ -1,3 +1,5 @@
+import { SITE_URL, articleSchema, projectRef, developerRef } from "@/utils/schema";
+
 export type NewsMeta = {
   id: string;
 
@@ -30,25 +32,12 @@ export type NewsMeta = {
   faqSchema?: Record<string, unknown>;
 };
 
-const SITE_URL = "https://purvaorientgrandlalbagh.com";
+/* Shared schema.org nodes (the project and developer @ids match the homepage graph) */
+const newsAbout = [projectRef, developerRef];
 
-/* Shared schema.org nodes (the project entity @id matches the homepage graph) */
-const realRevenue = {
-  "@type": "Organization",
-  name: "Real Revenue",
-  url: `${SITE_URL}/`,
-  parentOrganization: {
-    "@type": "Organization",
-    name: "Earlydays Innovations Private Limited",
-  },
-};
-
-const projectEntity = {
-  "@type": "ApartmentComplex",
-  "@id": `${SITE_URL}/#project`,
-  name: "Purva Orient Grand",
-  url: `${SITE_URL}/`,
-  numberOfAccommodationUnits: 97,
+const lalBaghRoad = {
+  "@type": "Place",
+  name: "Lal Bagh Main Road, Sudhama Nagar, Central Bengaluru",
   address: {
     "@type": "PostalAddress",
     streetAddress:
@@ -58,17 +47,6 @@ const projectEntity = {
     postalCode: "560027",
     addressCountry: "IN",
   },
-};
-
-const developerEntity = {
-  "@type": "Organization",
-  name: "Puravankara Limited",
-};
-
-const lalBaghRoad = {
-  "@type": "Place",
-  name: "Lal Bagh Main Road, Sudhama Nagar, Central Bengaluru",
-  address: projectEntity.address,
 };
 
 const NewsData: NewsMeta[] = [
@@ -121,30 +99,23 @@ const NewsData: NewsMeta[] = [
     newsType: "Inventory",
 
     /* Structured Data */
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
+    schemaMarkup: articleSchema({
+      type: "NewsArticle",
+      path: "/news/purva-orient-grand-limited-inventory-9-crore-onwards-2026",
       "@id": `${SITE_URL}/news/purva-orient-grand-limited-inventory-9-crore-onwards-2026#article`,
       headline:
         "Purva Orient Grand Now at ₹9 Crore Onwards: What It Says About Remaining Inventory",
       description:
-        "Puravankara's current published position for Purva Orient Grand on Lal Bagh Main Road is ₹9 crore onwards, against a launch range of ₹6.00 to ₹10.78 crore, indicating that the larger and higher-floor residences are what remain.",
-      image: [`${SITE_URL}/images/news-rooftop-club.webp`],
+        "The developer's published entry point has moved from ₹6.00 Cr at launch to ₹9 Cr. What the shift means for a buyer and what a ₹9 Cr home costs once GST, stamp duty and premiums are added.",
+      image: `${SITE_URL}/images/news-rooftop-club.webp`,
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
-      inLanguage: "en-IN",
-      author: realRevenue,
-      publisher: realRevenue,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/news/purva-orient-grand-limited-inventory-9-crore-onwards-2026`,
-      },
       articleSection: "Price & Inventory",
       keywords:
         "Purva Orient Grand price, Purva Orient Grand availability, 4 BHK Lalbagh Road, luxury apartments central Bangalore, Puravankara",
-      about: [projectEntity, developerEntity],
+      about: newsAbout,
       contentLocation: lalBaghRoad,
-    },
+    }),
   },
   {
     id: "news-1",
@@ -195,9 +166,9 @@ const NewsData: NewsMeta[] = [
     newsType: "Construction",
 
     /* Structured Data */
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "NewsArticle",
+    schemaMarkup: articleSchema({
+      type: "NewsArticle",
+      path: "/news/purva-orient-grand-construction-final-stages-2026",
       "@id": `${SITE_URL}/news/purva-orient-grand-construction-final-stages-2026#article`,
       headline:
         "Purva Orient Grand Is in Its Final Stages of Construction: What It Means for Buyers",
@@ -210,19 +181,12 @@ const NewsData: NewsMeta[] = [
       ],
       datePublished: "2026-09-21",
       dateModified: "2026-09-21",
-      inLanguage: "en-IN",
-      author: realRevenue,
-      publisher: realRevenue,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/news/purva-orient-grand-construction-final-stages-2026`,
-      },
       articleSection: "Project Update",
       keywords:
         "Purva Orient Grand construction status, Purva Orient Grand possession, Karnataka RERA, MIVAN construction, Puravankara",
-      about: [projectEntity, developerEntity],
+      about: newsAbout,
       contentLocation: lalBaghRoad,
-    },
+    }),
   },
 ];
 

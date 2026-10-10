@@ -1,9 +1,4 @@
-# *
 User-agent: *
-Allow: /
+Disallow: /cgi-bin/
 
-# Host
-Host: https://purvaorientgrandlalbagh.com
-
-# Sitemaps
 Sitemap: https://purvaorientgrandlalbagh.com/sitemap.xml

@@ -4,17 +4,20 @@ import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import logo from "@/assets/purva-logo.png";
 import StickyDownloadButton from "@/components/StickyButton";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, breadcrumbSchema } from "@/utils/schema";
 
 export const metadata: Metadata = {
   title: "About Puravankara | Purva Orient Grand",
   description:
     "Learn about Puravankara, the developer behind Purva Orient Grand in Central Bengaluru.",
-  alternates: { canonical: "https://www.godrejgolflink.in/about-godrej-properties" },
+  alternates: { canonical: `${SITE_URL}/about-puravankara` },
 };
 
-export default function AboutGodrejPropertiesPage() {
+export default function AboutPuravankaraPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("About Puravankara", "/about-puravankara")} />
       <PageBanner
         eyebrow="The Developer"
         title="About Puravankara"
@@ -57,7 +60,7 @@ export default function AboutGodrejPropertiesPage() {
 
             <div className="mt-4">
               <Link
-                href="/about-godrej-golf-links"
+                href="/about-purva-orient-grand"
                 className="inline-block bg-[#DCA54A] hover:bg-[#C49A2B] text-white text-xs font-semibold tracking-widest uppercase px-6 py-3 rounded-md transition-colors"
               >
                 Explore Purva Orient Grand

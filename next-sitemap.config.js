@@ -2,7 +2,8 @@
 
 module.exports = {
   siteUrl: "https://purvaorientgrandlalbagh.com",
-  generateRobotsTxt: true,
+  // public/robots.txt is maintained by hand; don't let postbuild overwrite it.
+  generateRobotsTxt: false,
   generateIndexSitemap: false,
 
 

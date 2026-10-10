@@ -7,16 +7,14 @@ import RelatedPosts from "@/components/RelatedPosts";
 import { blogData } from "@/data/blogData";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import Script from "next/script";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, articleSchema } from "@/utils/schema";
 import path from "path";
 import fs from "fs";
 
 type Params = Promise<{ slug: string }>;
 
-const SITE_URL = "https://purvaorientgrandlalbagh.com";
 const SITE_NAME = "Purva Orient Grand";
-const PUBLISHER_NAME = "Real Revenue";
-const PUBLISHER_LOGO = `${SITE_URL}/purva-orient-grand-logo.png`;
 
 /* ─────────────────────────────────────────────
    LOAD MDX FILE
@@ -156,69 +154,23 @@ export default async function BlogDetail({ params }: { params: Params }) {
   };
 
   /* ── Article Schema (fallback when a post has no schemaMarkup of its own) ── */
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
+  const fallbackArticleSchema = articleSchema({
+    type: "BlogPosting",
+    path: `/blogs/${slug}`,
     headline: blog.title,
     description: blog.metaDescription || blog.excerpt,
-    image: imageUrl || undefined,
+    image: imageUrl,
     datePublished: blog.date,
     dateModified: blog.updatedAt || blog.date,
-    author: { "@type": "Organization", name: blog.author || PUBLISHER_NAME },
-    publisher: {
-      "@type": "Organization",
-      name: PUBLISHER_NAME,
-      logo: {
-        "@type": "ImageObject",
-        url: PUBLISHER_LOGO,
-      },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": pageUrl,
-    },
     keywords: (blog.keywords ?? []).join(", "),
-  };
+  });
 
   return (
     <>
       {/* JSON-LD */}
-      {blog.schemaMarkup && (
-        <Script
-          id="schema-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(blog.schemaMarkup),
-          }}
-        />
-      )}
-      {blog?.faqSchema && (
-        <Script
-          id="schema-faq"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(blog.faqSchema),
-          }}
-        />
-      )}
-
-      {!blog.schemaMarkup && (
-        <Script
-          id="schema-article"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(articleSchema),
-          }}
-        />
-      )}
-
-      <Script
-        id="schema-breadcrumb"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
+      <JsonLd data={blog.schemaMarkup ?? fallbackArticleSchema} />
+      {blog.faqSchema && <JsonLd data={blog.faqSchema} />}
+      <JsonLd data={breadcrumbSchema} />
 
       <article className="w-full bg-white">
         {/* HERO */}

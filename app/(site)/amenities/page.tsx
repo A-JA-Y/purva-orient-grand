@@ -6,6 +6,7 @@ import Amenities from "@/components/Amenities";
 import ModalWrapper from "@/components/ModalWrapper";
 import StickyDownloadButton from "@/components/StickyButton";
 import rooftopAerial from "@/assets/pog/rooftop-aerial.webp";
+import { organizationRef } from "@/utils/schema";
 
 const SITE_URL = "https://purvaorientgrandlalbagh.com";
 const PAGE_URL = `${SITE_URL}/amenities`;
@@ -188,21 +189,18 @@ export default function AmenitiesPage() {
               {
                 "@type": "RealEstateAgent",
                 "@id": `${SITE_URL}/#agent`,
-                "name": "Real Revenue",
+                "name": "Real Revenue — Authorised Channel Partner, Purva Orient Grand",
                 "description": "Authorised channel partner for Purva Orient Grand by Puravankara, a 97-residence development of 3 and 4 BHK homes on Lal Bagh Main Road, Central Bengaluru.",
                 "url": `${SITE_URL}/`,
                 "image": `${SITE_URL}/images/og-image.webp`,
-                "telephone": "+916356663535",
+                "telephone": "+91-63566-63535",
                 "email": "vishalajitsaria1988@gmail.com",
-                "priceRange": "₹₹₹₹",
+                "priceRange": "₹9 Cr – ₹10.78 Cr",
                 "areaServed": {
-                  "@type": "Place",
-                  "name": "Bengaluru, Karnataka"
+                  "@type": "City",
+                  "name": "Bengaluru"
                 },
-                "parentOrganization": {
-                  "@type": "Organization",
-                  "name": "Earlydays Innovations Private Limited"
-                }
+                "parentOrganization": organizationRef
               },
               {
                 "@type": "ApartmentComplex",

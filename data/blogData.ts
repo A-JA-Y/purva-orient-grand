@@ -1,3 +1,5 @@
+import { SITE_URL, articleSchema } from "@/utils/schema";
+
 export type BlogMeta = {
   id: string;
 
@@ -26,31 +28,6 @@ export type BlogMeta = {
   | Record<string, unknown>
   | Record<string, unknown>[];
   faqSchema?: Record<string, unknown>;
-};
-
-const SITE_URL = "https://purvaorientgrandlalbagh.com";
-
-const AUTHOR = {
-  "@type": "Organization",
-  name: "Real Revenue",
-  url: `${SITE_URL}/`,
-};
-
-const PUBLISHER = {
-  "@type": "Organization",
-  name: "Real Revenue",
-  url: `${SITE_URL}/`,
-  logo: {
-    "@type": "ImageObject",
-    url: `${SITE_URL}/purva-orient-grand-logo.png`,
-  },
-};
-
-const PROJECT_REF = {
-  "@type": "ApartmentComplex",
-  "@id": `${SITE_URL}/#project`,
-  name: "Purva Orient Grand",
-  url: `${SITE_URL}/`,
 };
 
 const faq = (items: { q: string; a: string }[]) => ({
@@ -117,9 +94,9 @@ export const blogData: BlogMeta[] = [
     featured: true,
 
     /* JSON-LD */
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    schemaMarkup: articleSchema({
+      type: "BlogPosting",
+      path: "/blogs/luxury-apartments-central-bangalore",
       headline:
         "Luxury Apartments in Central Bangalore: How Purva Orient Grand Compares",
       description:
@@ -127,20 +104,11 @@ export const blogData: BlogMeta[] = [
       image: `${SITE_URL}/images/blog-luxury-apartments-central-bangalore.webp`,
       datePublished: "2026-09-22",
       dateModified: "2026-09-22",
-      author: AUTHOR,
-      publisher: PUBLISHER,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/blogs/luxury-apartments-central-bangalore`,
-      },
-      url: `${SITE_URL}/blogs/luxury-apartments-central-bangalore`,
       articleSection: "Buyer's Guide",
       keywords:
         "luxury apartments in central Bangalore, CBD Bangalore luxury flats, Purva Orient Grand, apartments near Lalbagh, 4 BHK flats Lalbagh Road",
-      inLanguage: "en-IN",
       timeRequired: "PT11M",
-      about: PROJECT_REF,
-    },
+    }),
     faqSchema: faq([
       {
         q: "Which are the leading luxury apartments in central Bangalore?",
@@ -216,9 +184,9 @@ export const blogData: BlogMeta[] = [
     featured: true,
 
     /* JSON-LD */
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    schemaMarkup: articleSchema({
+      type: "BlogPosting",
+      path: "/blogs/why-cbd-bangalore-property-appreciates",
       headline:
         "CBD Bangalore Real Estate Investment: Why Land Scarcity Drives Long-Term Value",
       description:
@@ -226,20 +194,11 @@ export const blogData: BlogMeta[] = [
       image: `${SITE_URL}/images/blog-why-cbd-bangalore-property-appreciates.webp`,
       datePublished: "2026-09-24",
       dateModified: "2026-09-24",
-      author: AUTHOR,
-      publisher: PUBLISHER,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/blogs/why-cbd-bangalore-property-appreciates`,
-      },
-      url: `${SITE_URL}/blogs/why-cbd-bangalore-property-appreciates`,
       articleSection: "Investment",
       keywords:
         "CBD Bangalore real estate investment, Central Bengaluru property investment, land cost ratio, CBD Bangalore property prices, Purva Orient Grand",
-      inLanguage: "en-IN",
       timeRequired: "PT9M",
-      about: PROJECT_REF,
-    },
+    }),
     faqSchema: faq([
       {
         q: "Is CBD Bangalore real estate a good investment?",
@@ -314,30 +273,21 @@ export const blogData: BlogMeta[] = [
     featured: true,
 
     /* JSON-LD */
-    schemaMarkup: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
+    schemaMarkup: articleSchema({
+      type: "BlogPosting",
+      path: "/blogs/what-is-mivan-construction",
       headline:
         "What Is MIVAN Construction? Meaning, Benefits and Trade-offs for Homebuyers",
       description:
-        "The meaning of MIVAN construction explained for homebuyers: aluminium formwork, monolithic RCC, tolerances, cracking, acoustics and cost, with Purva Orient Grand as the worked example.",
+        "MIVAN explained for buyers: how aluminium formwork creates a monolithic concrete structure, why that means flatter walls and fewer cracks, and how it works at Purva Orient Grand.",
       image: `${SITE_URL}/images/blog-what-is-mivan-construction.webp`,
       datePublished: "2026-09-25",
       dateModified: "2026-09-25",
-      author: AUTHOR,
-      publisher: PUBLISHER,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": `${SITE_URL}/blogs/what-is-mivan-construction`,
-      },
-      url: `${SITE_URL}/blogs/what-is-mivan-construction`,
       articleSection: "Construction & Specifications",
       keywords:
         "MIVAN construction meaning, what is MIVAN construction, aluminium formwork, MIVAN vs conventional construction, Purva Orient Grand specifications",
-      inLanguage: "en-IN",
       timeRequired: "PT9M",
-      about: PROJECT_REF,
-    },
+    }),
     faqSchema: faq([
       {
         q: "What is the meaning of MIVAN construction?",

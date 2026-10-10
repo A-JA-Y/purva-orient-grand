@@ -2,10 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PageBanner from "@/components/PageBanner";
 import StickyDownloadButton from "@/components/StickyButton";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, breadcrumbSchema } from "@/utils/schema";
 
 export const metadata: Metadata = {
   title: "Purva Orient Grand Price List 2026 | 3 & 4 BHK Lal Bagh",
   description: "Purva Orient Grand price and configuration guide for 3 and 4 BHK residences on Lal Bagh Main Road, Central Bengaluru.",
+  alternates: { canonical: `${SITE_URL}/price` },
 };
 
 const priceTable = [
@@ -17,6 +20,7 @@ const priceTable = [
 
 export default function PricePage() {
   return <>
+    <JsonLd data={breadcrumbSchema("Price", "/price")} />
     <PageBanner eyebrow="Limited Inventory" title="Purva Orient Grand Price" subtitle="3 and 4 BHK residences on Lal Bagh Main Road, Central Bengaluru" />
     <section className="w-full bg-white py-16 px-6"><div className="max-w-5xl mx-auto space-y-10">
       <div className="prose max-w-none text-gray-700"><h1 className="text-3xl font-semibold text-gray-900 mb-5">Purva Orient Grand Price List 2026</h1><p>Inventory is limited and Puravankara's current published position is <strong>Rs 9 crore onwards</strong>, indicating that larger and higher-floor residences are what remain. The launch range below is provided for reference. Ask for live availability before planning around a configuration.</p></div>

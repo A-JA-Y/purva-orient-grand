@@ -4,6 +4,8 @@ import PageBanner from "@/components/PageBanner";
 import ReasonsToInvest from "@/components/ReasonToInvest";
 import VillaFeatures from "@/components/PremiumInventory";
 import StickyDownloadButton from "@/components/StickyButton";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema } from "@/utils/schema";
 
 export const metadata: Metadata = {
   title: "Godrej Golf Links Villas Price — Complete V1 to V7 Price Chart",
@@ -25,6 +27,7 @@ const priceTable = [
 export default function VillasConfigurationsPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("Configurations", "/configurations")} />
       <PageBanner
         eyebrow="Residences"
         title="Villas & Configurations"

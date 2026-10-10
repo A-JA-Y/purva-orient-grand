@@ -6,6 +6,19 @@ import ReraStrip from "@/components/QRsectionsm";
 import ContactForm from "@/components/ContactForm";
 import ModalWrapper from "@/components/ModalWrapper";
 import HomePageHeader from "@/components/HomePageHeader";
+import JsonLd from "@/components/JsonLd";
+import towerSunset from "@/assets/pog/tower-sunset.webp";
+import infinityPool from "@/assets/pog/infinity-pool.webp";
+import {
+  SITE_URL,
+  OG_IMAGE,
+  LOGO_URL,
+  ORGANIZATION_ID,
+  WEBSITE_ID,
+  AGENT_ID,
+  PROJECT_ID,
+  DEVELOPER_ID,
+} from "@/utils/schema";
 
 // Lazy load below-the-fold components
 const AboutProject = dynamic(() => import("@/components/AboutProject"));
@@ -25,9 +38,6 @@ const StickyDownloadButton = dynamic(() => import("@/components/StickyButton"));
 const Footer = dynamic(() => import("@/components/Footer"));
 const FloatingWhatsapp = dynamic(()=>import("@/components/FloatingWhatsapp"));
 const FloatingCall = dynamic(()=>import("@/components/FloatingcallButton"));
-
-const SITE_URL = "https://purvaorientgrandlalbagh.com";
-const OG_IMAGE = `${SITE_URL}/images/og-image.webp`;
 
 // Homepage-only canonical and og:url (kept out of the root layout so inner pages
 // never inherit the homepage canonical).
@@ -55,54 +65,88 @@ export const metadata: Metadata = {
   },
 };
 
+const RERA_NUMBER = "PRM/KA/RERA/1251/310/PR/210907/004299";
+const PHONE = "+91-63566-63535";
+const EMAIL = "vishalajitsaria1988@gmail.com";
+
+const PROJECT_ADDRESS = {
+  "@type": "PostalAddress",
+  streetAddress: "Municipal No. 5, Lal Bagh Main Road, Ward No. 118, Sudhama Nagar",
+  addressLocality: "Bengaluru",
+  addressRegion: "Karnataka",
+  postalCode: "560027",
+  addressCountry: "IN",
+};
+
+const PROJECT_GEO = { "@type": "GeoCoordinates", latitude: 12.9535, longitude: 77.5885 };
+
+const floorPlans: [string, number, number, number][] = [
+  ["3 BHK Super Premium", 3, 1902, 2262],
+  ["4 BHK Elegance", 4, 2155, 2489],
+  ["4 BHK Luxury (Corner)", 4, 2629, 2741],
+  ["4 BHK Grandeur (Corner)", 4, 3095, 3360],
+];
+
+const amenities = [
+  "Infinity Pool at Level 25",
+  "The Rose & Cypress Rooftop Club",
+  "The Vault Whisky Lounge",
+  "The Aura Spa & Salon",
+  "Body Core Fitness Studio & Pilates Studio",
+  "Rooftop & Terrace Dining",
+  "Games Lounge, Reading Lounge & Business Centre",
+  "Koi Pond & Healing Garden",
+  "Paw Park & Children's Activity Trail",
+  "Mini Golf Putting Green",
+  "BluNex Home Automation",
+  "Two Basement Parking Levels",
+  "CCTV, Intercom & Fire Safety",
+];
+
+const projectProperties: [string, string][] = [
+  ["RERA Number", RERA_NUMBER],
+  ["RERA Completion Date", "2027-06-30"],
+  ["Availability", "Limited units"],
+  ["Land Area", "1.15 acres"],
+  ["Tower Configuration", "2B + G + 24 floors, single tower"],
+  ["Open Space", "75%+"],
+  ["Construction Technology", "MIVAN aluminium formwork"],
+  ["Approving Authority", "BBMP, Bengaluru Urban"],
+  ["Collection", "Puravankara WorldHome Collection"],
+];
+
 const faqs = [
   {
     q: "Where is Purva Orient Grand located?",
-    a: "Municipal No. 5, Lal Bagh Main Road, Ward 118, Sudhama Nagar, Bengaluru 560027 — in Central Bengaluru, five minutes from Lalbagh Botanical Garden and Lalbagh Metro Station on the Green Line.",
+    a: "Purva Orient Grand is at Municipal No. 5, Lal Bagh Main Road, Sudhama Nagar, Bengaluru 560027 — five minutes from Lalbagh Botanical Garden and Lalbagh Metro Station (Green Line) in Central Bengaluru.",
   },
   {
-    q: "Is Purva Orient Grand ready for possession?",
-    a: "No. The project is under construction in its final stages. The RERA-filed completion date is 30 June 2027 and the occupancy certificate has not yet been received. Some listing portals incorrectly show it as complete.",
+    q: "What is the Purva Orient Grand price?",
+    a: "The launch range was ₹6.00 Cr to ₹10.78 Cr. The current published price is ₹9 Cr onwards, as most 3 BHK and lower-floor 4 BHK units are sold. Prices are indicative and exclude GST, stamp duty and registration.",
   },
   {
     q: "What configurations are available at Purva Orient Grand?",
-    a: "Four grades — 3 BHK Super Premium at 1,902 to 2,262 sq ft, 4 BHK Elegance at 2,155 to 2,489 sq ft, 4 BHK Luxury in corner positions at 2,629 to 2,741 sq ft, and 4 BHK Grandeur, also corner, at 3,095 to 3,360 sq ft (super built-up).",
+    a: "3 BHK Super Premium (1,902–2,262 sq ft), 4 BHK Elegance (2,155–2,489 sq ft), 4 BHK Luxury corner (2,629–2,741 sq ft) and 4 BHK Grandeur corner (3,095–3,360 sq ft), all super built-up.",
   },
   {
-    q: "What is the price of Purva Orient Grand?",
-    a: "The launch range ran from approximately ₹6.00 crore for the 3 BHK to approximately ₹10.78 crore for the largest 4 BHK Grandeur, at approximately ₹27,900 to ₹30,100 per sq ft. Puravankara's current published position is ₹9 crore onwards, which indicates the larger and higher-floor residences are what remain. Ask us for live inventory.",
+    q: "What is the RERA number of Purva Orient Grand?",
+    a: "Karnataka RERA PRM/KA/RERA/1251/310/PR/210907/004299, registered on 7 September 2021. Verify at rera.karnataka.gov.in.",
   },
   {
-    q: "How many homes are there at Purva Orient Grand?",
-    a: "Ninety-seven, in a single tower of two basements plus ground plus twenty-four floors on 1.15 acres.",
+    q: "When is the possession date for Purva Orient Grand?",
+    a: "The RERA-filed completion date is 30 June 2027. The tower is in its final stages of construction.",
   },
   {
-    q: "What is special about the design of Purva Orient Grand?",
-    a: "No residence shares a common wall with another, and every home has private decks. The twenty-fourth and twenty-fifth levels are given over entirely to The Rose & Cypress rooftop club with an infinity pool at the twenty-fifth level, designed by Andy Fisher of Singapore.",
+    q: "How many apartments are there in Purva Orient Grand?",
+    a: "97 residences in a single G+24 tower on 1.15 acres — 23 3 BHK and 74 4 BHK homes. No residence shares a wall with another.",
   },
   {
-    q: "What is MIVAN construction and why does it matter?",
-    a: "MIVAN is an aluminium formwork system that produces a monolithic concrete structure with much tighter dimensional tolerances than conventional block-and-plaster construction. In practice that means flatter walls, fewer cracks over time and better acoustic separation. It costs more to build.",
-  },
-  {
-    q: "Is Purva Orient Grand RERA approved?",
-    a: "Yes. It is registered with Karnataka RERA under PRM/KA/RERA/1251/310/PR/210907/004299, registered on 7 September 2021, with a filed completion date of 30 June 2027. Verify it at https://rera.karnataka.gov.in.",
-  },
-  {
-    q: "How far is the metro from Purva Orient Grand?",
-    a: "Lalbagh Metro Station on the Green Line is approximately five minutes away, or around half a kilometre. MG Road Metro is approximately ten minutes.",
-  },
-  {
-    q: "Why is Central Bengaluru priced so much higher than the IT corridors?",
-    a: "Because land, not construction, is the scarce input. In this project's own RERA filing, land accounts for fifty-two per cent of total project cost, against a typical twenty to thirty per cent in the suburbs. New supply in the CBD comes only from redeveloping small parcels, and Lalbagh's two hundred and forty protected acres cannot be built over.",
+    q: "What amenities does Purva Orient Grand offer?",
+    a: "The Rose & Cypress rooftop club on Levels 24–25 with an infinity pool, whisky lounge, spa, salon, fitness and Pilates studios, rooftop dining, games and reading lounges, business centre, plus a koi pond, healing garden, Paw Park and mini golf at ground and terrace levels.",
   },
   {
     q: "Who is the developer of Purva Orient Grand?",
-    a: "Puravankara Limited, founded in 1975 by Ravi Puravankara, listed on the BSE and NSE since 2007, with approximately ten million sq ft currently under execution across nine Indian cities and an international presence in Dubai, Colombo and Saudi Arabia.",
-  },
-  {
-    q: "Is a home loan available for Purva Orient Grand?",
-    a: "Yes. The project is approved by leading banks and housing finance companies. Our team arranges pre-approval and compares offers across lenders at no cost to you.",
+    a: "Puravankara Limited, founded in 1975 and listed on the BSE and NSE since 2007. Purva Orient Grand is part of its WorldHome Collection ultra-luxury line.",
   },
 ];
 
@@ -110,90 +154,113 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebSite",
-      "@id": `${SITE_URL}/#website`,
-      name: "Purva Orient Grand",
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: "Real Revenue",
+      legalName: "Earlydays Innovations Pvt. Ltd.",
       url: `${SITE_URL}/`,
-      inLanguage: "en-IN",
-      publisher: { "@id": `${SITE_URL}/#agent` },
+      logo: { "@type": "ImageObject", url: LOGO_URL },
+      description:
+        "Real Revenue is an authorised channel partner marketing Purva Orient Grand by Puravankara on Lal Bagh Main Road, Bengaluru.",
+      telephone: PHONE,
+      email: EMAIL,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: PHONE,
+        contactType: "sales",
+        areaServed: "IN",
+        availableLanguage: ["English", "Hindi", "Kannada"],
+      },
     },
     {
-      "@type": "ApartmentComplex",
-      "@id": `${SITE_URL}/#project`,
-      name: "Purva Orient Grand",
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
       url: `${SITE_URL}/`,
+      name: "Purva Orient Grand",
+      publisher: { "@id": ORGANIZATION_ID },
+      inLanguage: "en-IN",
+    },
+    {
+      "@type": "RealEstateAgent",
+      "@id": AGENT_ID,
+      name: "Real Revenue — Authorised Channel Partner, Purva Orient Grand",
+      url: `${SITE_URL}/`,
+      telephone: PHONE,
+      email: EMAIL,
       image: OG_IMAGE,
-      description:
-        "Purva Orient Grand is a 97-residence ultra-luxury development of 3 and 4 BHK homes in a single G+24 tower on 1.15 acres at Lal Bagh Main Road, Sudhama Nagar, Central Bengaluru, part of Puravankara's WorldHome Collection, with a rooftop club and infinity pool at the 25th level.",
-      numberOfAccommodationUnits: 97,
-      petsAllowed: true,
+      priceRange: "₹9 Cr – ₹10.78 Cr",
+      areaServed: { "@type": "City", name: "Bengaluru" },
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Municipal No. 5, Lal Bagh Main Road, Ward No. 118, Sudhama Nagar",
+        streetAddress: "Municipal No. 5, Lal Bagh Main Road, Sudhama Nagar",
         addressLocality: "Bengaluru",
         addressRegion: "Karnataka",
         postalCode: "560027",
         addressCountry: "IN",
       },
-      amenityFeature: [
-        "Infinity Pool at 25th Level",
-        "The Rose and Cypress Rooftop Club",
-        "Spa",
-        "Salon",
-        "Fitness Studio",
-        "Whisky Lounge",
-        "Mini Golf Putting Green",
-        "Pet Park",
-        "Koi Pond and Healing Garden",
-        "Home Automation",
-      ].map((name) => ({
+      geo: PROJECT_GEO,
+      parentOrganization: { "@id": ORGANIZATION_ID },
+    },
+    {
+      "@type": "ApartmentComplex",
+      "@id": PROJECT_ID,
+      name: "Purva Orient Grand",
+      alternateName: "Purva Orient Grand Lalbagh",
+      url: `${SITE_URL}/`,
+      image: [OG_IMAGE, `${SITE_URL}${towerSunset.src}`, `${SITE_URL}${infinityPool.src}`],
+      description:
+        "Purva Orient Grand is Puravankara's WorldHome Collection project on Lal Bagh Main Road, Sudhama Nagar, Central Bengaluru — a single G+24 tower of 97 ultra-luxury 3 and 4 BHK residences on 1.15 acres, with zero shared walls, private decks and The Rose & Cypress rooftop club with an infinity pool at Level 25. Karnataka RERA PRM/KA/RERA/1251/310/PR/210907/004299, completion 30 June 2027.",
+      address: PROJECT_ADDRESS,
+      geo: PROJECT_GEO,
+      hasMap:
+        "https://www.google.com/maps/search/?api=1&query=Purva%20Orient%20Grand%2C%20Lal%20Bagh%20Main%20Road%2C%20Sudhama%20Nagar%2C%20Bengaluru%20560027",
+      numberOfAccommodationUnits: 97,
+      accommodationFloorPlan: floorPlans.map(([name, numberOfBedrooms, minValue, maxValue]) => ({
+        "@type": "FloorPlan",
+        name,
+        numberOfBedrooms,
+        floorSize: { "@type": "QuantitativeValue", minValue, maxValue, unitCode: "FTK" },
+      })),
+      amenityFeature: amenities.map((name) => ({
         "@type": "LocationFeatureSpecification",
         name,
         value: true,
       })),
+      additionalProperty: projectProperties.map(([name, value]) => ({
+        "@type": "PropertyValue",
+        name,
+        value,
+      })),
+      petsAllowed: true,
+      containedInPlace: { "@type": "Place", name: "Sudhama Nagar, Central Bengaluru" },
+    },
+    {
+      "@type": "Organization",
+      "@id": DEVELOPER_ID,
+      name: "Puravankara Limited",
+      url: "https://www.puravankara.com/",
+      foundingDate: "1975",
+      description: "Puravankara Limited, developer of Purva Orient Grand, listed on BSE and NSE since 2007.",
     },
     {
       "@type": "Product",
-      name: "Purva Orient Grand 3 BHK Super Premium",
+      "@id": `${SITE_URL}/#product`,
+      name: "Purva Orient Grand 3 & 4 BHK Apartments, Lal Bagh Main Road",
       image: OG_IMAGE,
       description:
-        "3 BHK Super Premium residence of 1,902 to 2,262 sq ft super built-up area at Purva Orient Grand, Lal Bagh Main Road, Central Bengaluru.",
-      brand: { "@type": "Brand", name: "Puravankara Limited" },
+        "3 and 4 BHK ultra-luxury apartments at Purva Orient Grand, Lal Bagh Main Road, Bengaluru. 1,902–3,360 sq ft super built-up. Current published price ₹9 Cr onwards (launch range was ₹6.00 Cr – ₹10.78 Cr).",
+      brand: { "@id": DEVELOPER_ID },
+      sku: RERA_NUMBER,
+      category: "Residential Apartment",
       offers: {
-        "@type": "Offer",
-        price: "60000000",
+        "@type": "AggregateOffer",
         priceCurrency: "INR",
+        lowPrice: "90000000",
+        highPrice: "107800000",
+        offerCount: 4,
         availability: "https://schema.org/LimitedAvailability",
-        url: `${SITE_URL}/`,
-      },
-    },
-    {
-      "@type": "Product",
-      name: "Purva Orient Grand 4 BHK Grandeur",
-      image: OG_IMAGE,
-      description:
-        "4 BHK Grandeur corner residence of 3,095 to 3,360 sq ft super built-up area at Purva Orient Grand, Lal Bagh Main Road, Central Bengaluru.",
-      brand: { "@type": "Brand", name: "Puravankara Limited" },
-      offers: {
-        "@type": "Offer",
-        price: "99300000",
-        priceCurrency: "INR",
-        availability: "https://schema.org/LimitedAvailability",
-        url: `${SITE_URL}/`,
-      },
-    },
-    {
-      "@type": "RealEstateAgent",
-      "@id": `${SITE_URL}/#agent`,
-      name: "Real Revenue",
-      url: `${SITE_URL}/`,
-      image: OG_IMAGE,
-      telephone: "+916356663535",
-      email: "vishalajitsaria1988@gmail.com",
-      areaServed: "Bengaluru",
-      parentOrganization: {
-        "@type": "Organization",
-        name: "Earlydays Innovations Private Limited",
+        url: `${SITE_URL}/price`,
+        seller: { "@id": ORGANIZATION_ID },
       },
     },
     {
@@ -205,15 +272,46 @@ const jsonLd = {
         acceptedAnswer: { "@type": "Answer", text: a },
       })),
     },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: `${SITE_URL}/` },
-        { "@type": "ListItem", position: 2, name: "Lalbagh Road Apartments", item: `${SITE_URL}/#location` },
-        { "@type": "ListItem", position: 3, name: "Purva Orient Grand", item: `${SITE_URL}/#project` },
-      ],
-    },
   ],
+};
+
+// Main inner pages, to help Google pick sitelinks.
+const siteNavigationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  itemListElement: [
+    ["About Purva Orient Grand", "/about-purva-orient-grand"],
+    ["Configurations", "/configurations"],
+    ["Price", "/price"],
+    ["Floor Plans", "/floor-plans"],
+    ["Master Plan", "/master-plan"],
+    ["Location & Connectivity", "/location-connectivity"],
+    ["Amenities", "/amenities"],
+    ["Contact Us", "/contact-us"],
+    ["About Puravankara", "/about-puravankara"],
+    ["Blogs", "/blogs"],
+    ["News", "/news"],
+  ].map(([name, path], i) => ({
+    "@type": "SiteNavigationElement",
+    position: i + 1,
+    name,
+    url: `${SITE_URL}${path}`,
+  })),
+};
+
+// The official film embedded in WalkThroughVideo (components/LiteYT.jsx).
+const YOUTUBE_VIDEO_ID = "qEOZyCcbd8A";
+
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  name: "Purva Orient Grand on Lalbagh Road — Official Project Film",
+  description: "Puravankara's official film on Purva Orient Grand, Lal Bagh Main Road, Central Bengaluru.",
+  thumbnailUrl: OG_IMAGE,
+  uploadDate: "2026-08-18T01:26:35-07:00",
+  duration: "PT3M7S",
+  embedUrl: `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`,
+  contentUrl: `https://www.youtube.com/watch?v=${YOUTUBE_VIDEO_ID}`,
 };
 
 export default function Home() {
@@ -224,12 +322,9 @@ export default function Home() {
       </h1>
 
       {/* SCHEMA START */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={jsonLd} />
+      <JsonLd data={siteNavigationSchema} />
+      <JsonLd data={videoSchema} />
       {/* SCHEMA END */}
 
       <HomePageHeader />

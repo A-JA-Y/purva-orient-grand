@@ -1,16 +1,19 @@
 import type { Metadata } from "next";
 import PageBanner from "@/components/PageBanner";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL, breadcrumbSchema } from "@/utils/schema";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy & Disclaimer | Godrej Golf Links",
+  title: "Privacy Policy & Disclaimer | Purva Orient Grand",
   description:
-    "Privacy policy and disclaimer for Godrej Golf Links marketing website. Read terms of use and information disclaimer.",
-  alternates: { canonical: "https://www.godrejgolflink.in/privacy-policy" },
+    "Privacy policy and disclaimer for the Purva Orient Grand marketing website. Read terms of use and information disclaimer.",
+  alternates: { canonical: `${SITE_URL}/privacy-policy` },
 };
 
 export default function PrivacyPolicyPage() {
   return (
     <>
+      <JsonLd data={breadcrumbSchema("Privacy Policy", "/privacy-policy")} />
       <PageBanner
         eyebrow="Legal"
         title="Privacy Policy / Disclaimer"

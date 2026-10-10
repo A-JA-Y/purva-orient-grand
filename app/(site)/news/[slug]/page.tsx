@@ -3,7 +3,8 @@ import RelatedPosts from "@/components/RelatedPosts";
 import NewsData from "@/data/newsData";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import Script from "next/script";
+import JsonLd from "@/components/JsonLd";
+import { articleSchema } from "@/utils/schema";
 import path from "path";
 import fs from "fs";
 
@@ -145,72 +146,24 @@ export default async function NewsDetail({ params }: { params: Params }) {
     ],
   };
 
-  /* ── Article Schema ── */
-  const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "NewsArticle",
+  /* ── Article Schema (fallback when an entry has no schemaMarkup of its own) ── */
+  const fallbackArticleSchema = articleSchema({
+    type: "NewsArticle",
+    path: `/news/${slug}`,
     headline: news.title,
     description: news.metaDescription || news.excerpt,
-    image: imageUrl || undefined,
+    image: imageUrl,
     datePublished: news.date,
     dateModified: news.updatedAt || news.date,
-    author: {
-      "@type": "Organization",
-      name: news.author || "Real Revenue",
-      url: "https://purvaorientgrandlalbagh.com/",
-    },
-    publisher: {
-      "@type": "Organization",
-      name: "Real Revenue",
-      url: "https://purvaorientgrandlalbagh.com/",
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": pageUrl,
-    },
     keywords: (news.keywords ?? []).join(", "),
-  };
+  });
 
   return (
     <>
       {/* JSON-LD */}
-      {news.schemaMarkup && (
-        <Script
-          id="schema-jsonld"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(news.schemaMarkup),
-          }}
-        />
-      )}
-      {news?.faqSchema && (
-        <Script
-          id="schema-faq"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(news.faqSchema),
-          }}
-        />
-      )}
-
-      {/* Generic NewsArticle schema only when the entry has no schemaMarkup of its own (avoids duplicate NewsArticle nodes) */}
-      {!news.schemaMarkup && (
-        <Script
-          id="schema-article"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(articleSchema),
-          }}
-        />
-      )}
-
-      <Script
-        id="schema-breadcrumb"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbSchema),
-        }}
-      />
+      <JsonLd data={news.schemaMarkup ?? fallbackArticleSchema} />
+      {news.faqSchema && <JsonLd data={news.faqSchema} />}
+      <JsonLd data={breadcrumbSchema} />
 
       <article className="w-full bg-white">
         {/* HERO IMAGE */}
