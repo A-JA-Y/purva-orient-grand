@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useMemo } from "react";
 import { blogData } from "@/data/blogData";
+import { guidePages } from "@/data/guidePages";
 import StickyDownloadButton from "@/components/StickyButton";
 import Head from "next/head";
 
@@ -171,6 +172,41 @@ export default function BlogsIndex() {
             ))}
           </div>
         )}
+      </div>
+
+      {/* ── ROOT-LEVEL BUYER GUIDES ── */}
+      <div className="max-w-5xl mx-auto px-6 pb-16">
+        <h2 className="text-xs uppercase tracking-widest text-gray-400 mb-6">
+          Bangalore buyer guides
+        </h2>
+        <div className="grid md:grid-cols-2 gap-4">
+          {guidePages.map((guide) => (
+            <Link key={guide.slug} href={`/${guide.slug}`}>
+              <div className="group grid grid-cols-[112px_1fr] sm:grid-cols-[160px_1fr] h-full bg-white border border-gray-100 rounded-2xl overflow-hidden hover:border-gray-200 transition-colors">
+                <div className="relative w-full h-full min-h-32 bg-gradient-to-br from-amber-50 to-yellow-100">
+                  <Image
+                    src={guide.image}
+                    alt={guide.altText}
+                    fill
+                    sizes="160px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-4 flex flex-col">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-600 mb-2">
+                    {guide.category}
+                  </span>
+                  <h3 className="text-sm font-semibold text-gray-900 leading-snug group-hover:text-gray-500 transition-colors mb-2">
+                    {guide.shortTitle}
+                  </h3>
+                  <p className="text-xs text-gray-500 leading-relaxed line-clamp-3">
+                    {guide.excerpt}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="relative">

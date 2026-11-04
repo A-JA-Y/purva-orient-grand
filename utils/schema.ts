@@ -51,7 +51,7 @@ export function breadcrumbSchema(name: string, path: string) {
 }
 
 type ArticleInput = {
-  type: "BlogPosting" | "NewsArticle";
+  type: "Article" | "BlogPosting" | "NewsArticle";
   path: string;
   headline: string;
   description: string;
@@ -61,7 +61,7 @@ type ArticleInput = {
   about?: Record<string, unknown> | Record<string, unknown>[];
 } & Record<string, unknown>;
 
-/** BlogPosting / NewsArticle, authored and published by Real Revenue, about the project. */
+/** Article / BlogPosting / NewsArticle, authored and published by Real Revenue, about the project. */
 export function articleSchema({ type, path, about = projectRef, ...rest }: ArticleInput) {
   const url = `${SITE_URL}${path}`;
   return {

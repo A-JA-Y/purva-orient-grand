@@ -6,6 +6,7 @@ import type { MDXComponents } from "mdx/types";
 import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import React from "react";
+import VideoEmbed from "@/components/VideoEmbed";
 
 export { Link };
 
@@ -517,6 +518,98 @@ export function Disclaimer({ description }: { description: string }) {
 
 
 /* ─────────────────────────────────────────────
+   FIGURE (image + caption)
+───────────────────────────────────────────── */
+
+type FigureProps = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+  /** Cap the rendered width, e.g. for a small source image. */
+  maxWidth?: number;
+};
+
+export function Figure({ src, alt, width, height, caption, maxWidth }: FigureProps) {
+  return (
+    <figure className="my-10 mx-auto" style={maxWidth ? { maxWidth } : undefined}>
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        sizes={maxWidth ? `${maxWidth}px` : "(min-width: 1024px) 820px, 100vw"}
+        className="rounded-xl w-full h-auto"
+      />
+      {caption && (
+        <figcaption className="text-[0.8rem] text-gray-500 mt-3 leading-relaxed">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/** Two images side by side (stacked on mobile), cropped to a common 4:3 frame. */
+export function FigureGrid({
+  images,
+  caption,
+}: {
+  images: Omit<FigureProps, "caption" | "maxWidth">[];
+  caption?: string;
+}) {
+  return (
+    <figure className="my-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {images.map((img) => (
+          <Image
+            key={img.src}
+            src={img.src}
+            alt={img.alt}
+            width={img.width}
+            height={img.height}
+            sizes="(min-width: 1024px) 410px, (min-width: 640px) 50vw, 100vw"
+            className="rounded-xl w-full aspect-[4/3] object-cover"
+          />
+        ))}
+      </div>
+      {caption && (
+        <figcaption className="text-[0.8rem] text-gray-500 mt-3 leading-relaxed">
+          {caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   PROJECT FACTS ("Best for" + key facts strip)
+───────────────────────────────────────────── */
+
+export function ProjectFacts({
+  bestFor,
+  children,
+}: {
+  bestFor: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="my-8 rounded-xl border border-emerald-100 bg-emerald-50/60 px-5 py-4 text-[15px] leading-relaxed text-gray-700 [&_p]:m-0 [&_p]:text-[15px] [&_p]:leading-relaxed [&_p]:text-gray-700">
+      <p>
+        <strong className="font-medium text-gray-900">Best for:</strong> {bestFor}
+      </p>
+      <div className="mt-3 pt-3 border-t border-emerald-100">
+        <span className="block text-[10.5px] uppercase tracking-widest font-medium text-emerald-700 mb-1">
+          Key facts
+        </span>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    OPTIMISED IMAGE WRAPPER
 ───────────────────────────────────────────── */
 
@@ -734,6 +827,27 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ),
     hr: () => <hr className="border-none border-t border-gray-200 my-8" />,
 
+    /* GFM tables. The wrapper scrolls sideways on small screens instead of widening the page. */
+    table: ({ children }) => (
+      <div className="overflow-x-auto my-8 rounded-xl border border-gray-200">
+        <table className="w-full border-collapse text-sm">{children}</table>
+      </div>
+    ),
+    thead: ({ children }) => (
+      <thead className="bg-emerald-800 text-white">{children}</thead>
+    ),
+    tr: ({ children }) => <tr className="even:bg-gray-50">{children}</tr>,
+    th: ({ children }) => (
+      <th className="px-3.5 py-2.5 text-left font-medium text-[0.82rem] whitespace-nowrap">
+        {children}
+      </th>
+    ),
+    td: ({ children }) => (
+      <td className="px-3.5 py-2.5 border-t border-gray-100 text-gray-600 font-light align-top">
+        {children}
+      </td>
+    ),
+
     HeroBand,
     TOC,
     StatGrid,
@@ -766,5 +880,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     YouTube,
     Lead,
     Grid,
+
+    /* Guide-page components */
+    Figure,
+    FigureGrid,
+    ProjectFacts,
+    VideoEmbed,
   };
 }
