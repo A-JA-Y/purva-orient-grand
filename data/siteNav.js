@@ -14,4 +14,9 @@ export const siteNavLinks = [
 
 ];
 
-export const footerNavLinks = siteNavLinks;
+// The footer also carries the root-level buyer guides, which are too long-titled for the header.
+export const footerNavLinks = [
+  ...siteNavLinks,
+  { label: "Is Bangalore Good to Live or Invest In?", href: "/is-bangalore-good-to-live-or-invest-in" },
+  { label: "Best Residential Projects in Bangalore 2026", href: "/best-residential-projects-in-bangalore-2026" },
+];
