@@ -81,7 +81,7 @@ export default function GuidePage({
   const path = `/${page.slug}`;
 
   const article = articleSchema({
-    type: "Article",
+    type: page.schemaType ?? "Article",
     path,
     headline: page.title,
     description: page.metaDescription,

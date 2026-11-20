@@ -19,4 +19,5 @@ export const footerNavLinks = [
   ...siteNavLinks,
   { label: "Is Bangalore Good to Live or Invest In?", href: "/is-bangalore-good-to-live-or-invest-in" },
   { label: "Best Residential Projects in Bangalore 2026", href: "/best-residential-projects-in-bangalore-2026" },
+  { label: "Rent vs Buy House in Bangalore", href: "/rent-vs-buy-house-bangalore" },
 ];

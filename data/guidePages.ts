@@ -30,6 +30,9 @@ export type GuidePageMeta = {
   updatedAt: string;
   author: string;
 
+  /** schema.org type for the page's article node. Defaults to "Article". */
+  schemaType?: "Article" | "BlogPosting";
+
   faq: FAQItem[];
 };
 
@@ -118,6 +121,44 @@ export const bestProjectsList = [
   { name: "Bhartiya Nikoo Homes 8", url: "https://bhartiyanikoohomes8.com/" },
 ];
 
+/* ─────────────────────────────────────────────
+   3. RENT VS BUY HOUSE IN BANGALORE
+───────────────────────────────────────────── */
+export const rentVsBuyFaq: FAQItem[] = [
+  {
+    q: "Is it better to rent or buy a house in Bangalore?",
+    a: "It depends on where and for how long. In central Bangalore a year’s rent on a luxury 3 BHK is about 3% of its price, so renting costs far less each month. Buying comes out ahead if the home gains about 7.5% a year over ten years or more, measured against a tenant who invests the difference at 9%.",
+  },
+  {
+    q: "Is rent cheaper than EMI in central Bangalore?",
+    a: "Yes. A 3 BHK of about 2,000 sq. ft. rents for about ₹1.5 lakh a month. The EMI on a ₹6 crore home with 25% down is about ₹3.76 lakh at 8% over 20 years.",
+  },
+  {
+    q: "What is the rent for a 3 BHK in central Bangalore?",
+    a: "Good 3 BHKs around Richmond Road and Shanthi Nagar ask about ₹1.4 lakh to ₹1.75 lakh a month. Older flats in Richmond Town start near ₹90,000.",
+  },
+  {
+    q: "How much of my own money do I need for a ₹6 crore home?",
+    a: "About ₹2.26 crore. Banks lend at most 75% on loans above ₹75 lakh, so the down payment is ₹1.5 crore. GST at 5% adds ₹30 lakh, and stamp duty, registration and cess add about ₹45.6 lakh.",
+  },
+  {
+    q: "What are the stamp duty and registration charges in Bangalore?",
+    a: "About 7.6% in all on homes above ₹45 lakh: 5% stamp duty, 2% registration and 0.6% cess and surcharge. The registration fee rose from 1% to 2% on 31 August 2025. The rate is the same for men and women.",
+  },
+  {
+    q: "Do I pay GST on a luxury flat in Bangalore?",
+    a: "5% if it is under construction when you buy. None if you buy after the completion certificate, with the full price paid after it.",
+  },
+  {
+    q: "Do I have to deduct TDS on rent?",
+    a: "Yes, if you’re an individual paying more than ₹50,000 a month. You deduct 2% of the rent and deposit it, and the landlord gets credit for it. On ₹1.5 lakh a month that is ₹36,000 a year.",
+  },
+  {
+    q: "Do I get tax benefits on rent or a home loan in Bangalore?",
+    a: "Only in the old tax regime. A tenant can claim HRA relief, with a 50% salary limit in Bengaluru from FY 2026-27. An owner can deduct up to ₹2 lakh of interest a year on a home they live in. The new regime gives neither.",
+  },
+];
+
 export const guidePages: GuidePageMeta[] = [
   {
     slug: "is-bangalore-good-to-live-or-invest-in",
@@ -187,6 +228,36 @@ export const guidePages: GuidePageMeta[] = [
     updatedAt: "2026-11-04",
     author: "Real Revenue",
     faq: bestProjectsFaq,
+  },
+  {
+    slug: "rent-vs-buy-house-bangalore",
+    title: "Rent vs Buy House in Bangalore: The Numbers for a Central Luxury Home",
+    shortTitle: "Rent vs Buy House in Bangalore",
+    metaTitle: "Rent vs Buy House in Bangalore: Central Luxury Numbers",
+    metaDescription:
+      "Rent vs buy house in Bangalore, worked on a ₹6 crore 3 BHK on Lalbagh Road: ₹1.5 lakh rent vs ₹3.76 lakh EMI, break-even growth, GST and tax.",
+    excerpt:
+      "A ₹6 crore 3 BHK on Lalbagh Road against a ₹1.5 lakh rent: the EMI, Karnataka’s 7.6% stamp duty and registration, the appreciation buying needs to break even, and how rent growth changes the answer.",
+    keywords: [
+      "rent vs buy house",
+      "rent vs buy house in Bangalore",
+      "is it better to rent or buy a house",
+      "rent vs EMI",
+      "3 BHK for rent in central Bangalore",
+      "stamp duty and registration charges in Bangalore",
+      "luxury apartments in Lalbagh Road",
+      "Purva Orient Grand price",
+    ],
+    image: "/images/rent-vs-buy-house-bangalore.webp",
+    altText:
+      "Purva Orient Grand tower at dusk above the Lalbagh tree canopy and the Central Bengaluru skyline, artistic impression",
+    category: "Buyer's Maths",
+    readTime: "11 min read",
+    date: "2026-11-19",
+    updatedAt: "2026-11-19",
+    author: "Real Revenue",
+    schemaType: "BlogPosting",
+    faq: rentVsBuyFaq,
   },
 ];
 
