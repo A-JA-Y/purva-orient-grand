@@ -7,6 +7,8 @@ import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import React from "react";
 import VideoEmbed from "@/components/VideoEmbed";
+import GuideCta from "@/components/GuideCta";
+import RentVsBuyCalculator from "@/components/RentVsBuyCalculator";
 
 export { Link };
 
@@ -610,6 +612,164 @@ export function ProjectFacts({
 }
 
 /* ─────────────────────────────────────────────
+   COST BARS (horizontal bars on one shared scale)
+   Each row is one bar; a row with several segments is stacked.
+   Segments are separated by a 2px gap, the data end is rounded and the
+   baseline end square. Hovering a segment shows its name and amount.
+───────────────────────────────────────────── */
+
+type BarSegment = { name: string; value: number; display: string; color: string };
+type BarRow = { label: string; total: string; segments: BarSegment[] };
+
+export function CostBars({
+  title,
+  rows,
+  note,
+}: {
+  title: string;
+  rows: BarRow[];
+  note?: string;
+}) {
+  const max = Math.max(...rows.map((r) => r.segments.reduce((s, x) => s + x.value, 0)));
+  // One legend entry per series, in the order they first appear.
+  const legend = rows
+    .flatMap((r) => r.segments)
+    .filter((s, i, all) => all.findIndex((x) => x.name === s.name) === i);
+
+  return (
+    <figure className="not-prose my-10 rounded-2xl border border-gray-200 bg-white px-5 py-6 sm:px-7">
+      <figcaption className="text-[15px] font-medium text-gray-900">{title}</figcaption>
+      <div className="mt-5 space-y-5">
+        {rows.map((row) => (
+          <div key={row.label}>
+            <div className="flex items-baseline justify-between gap-3 mb-1.5">
+              <span className="text-[13px] text-gray-600">{row.label}</span>
+              <span className="text-[15px] font-semibold text-gray-900 tabular-nums">{row.total}</span>
+            </div>
+            <div
+              className="flex h-6 w-full gap-[2px]"
+              role="img"
+              aria-label={`${row.label}: ${row.segments.map((s) => `${s.name} ${s.display}`).join(", ")}`}
+            >
+              {row.segments.map((s, i) => (
+                <div
+                  key={s.name}
+                  title={`${s.name}: ${s.display}`}
+                  className={`h-full ${i === row.segments.length - 1 ? "rounded-r" : ""}`}
+                  style={{ width: `${(s.value / max) * 100}%`, background: s.color, minWidth: 3 }}
+                />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-1.5 text-[12px] text-gray-500">
+        {legend.map((s) => (
+          <li key={s.name} className="flex items-center gap-1.5">
+            <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: s.color }} />
+            {s.name} <span className="text-gray-400">({s.display})</span>
+          </li>
+        ))}
+      </ul>
+      {note && <p className="mt-4 text-[12px] text-gray-400 leading-relaxed">{note}</p>}
+    </figure>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   SEGMENTED BAR (one whole split into parts)
+───────────────────────────────────────────── */
+
+export function SegmentedBar({
+  title,
+  total,
+  parts,
+  note,
+}: {
+  title: string;
+  total: string;
+  parts: BarSegment[];
+  note?: string;
+}) {
+  const sum = parts.reduce((s, p) => s + p.value, 0);
+
+  return (
+    <figure className="not-prose my-10 rounded-2xl border border-gray-200 bg-white px-5 py-6 sm:px-7">
+      <div className="flex items-baseline justify-between gap-3">
+        <figcaption className="text-[15px] font-medium text-gray-900">{title}</figcaption>
+        <span className="text-[1.6rem] font-semibold text-gray-900 whitespace-nowrap">{total}</span>
+      </div>
+      <div
+        className="mt-4 flex h-7 w-full gap-[2px]"
+        role="img"
+        aria-label={`${title}, ${total}: ${parts.map((p) => `${p.name} ${p.display}`).join(", ")}`}
+      >
+        {parts.map((p) => {
+          const share = Math.round((p.value / sum) * 100);
+          return (
+            <div
+              key={p.name}
+              title={`${p.name}: ${p.display} (${share}%)`}
+              className="flex h-full items-center rounded px-2 text-[11px] font-medium text-white"
+              style={{ width: `${(p.value / sum) * 100}%`, background: p.color }}
+            >
+              {share >= 12 && `${share}%`}
+            </div>
+          );
+        })}
+      </div>
+      <ul className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-2 text-[12.5px]">
+        {parts.map((p) => (
+          <li key={p.name} className="flex items-start gap-2">
+            <span className="mt-1 inline-block h-2.5 w-2.5 flex-shrink-0 rounded-sm" style={{ background: p.color }} />
+            <span className="text-gray-600">
+              {p.name}
+              <span className="block font-medium text-gray-900">{p.display}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+      {note && <p className="mt-4 text-[12px] text-gray-400 leading-relaxed">{note}</p>}
+    </figure>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   COMPARE COLUMNS (e.g. "rent if…" / "buy if…")
+───────────────────────────────────────────── */
+
+export function CompareColumns({
+  columns,
+}: {
+  columns: { title: string; items: string[]; tone?: "blue" | "emerald" }[];
+}) {
+  const tones = {
+    blue: { border: "border-t-[#2a78d6]", dot: "bg-[#2a78d6]", label: "text-[#1d5fae]" },
+    emerald: { border: "border-t-emerald-700", dot: "bg-emerald-700", label: "text-emerald-800" },
+  };
+  return (
+    <div className="not-prose my-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+      {columns.map((c) => {
+        const t = tones[c.tone ?? "emerald"];
+        return (
+          <div key={c.title} className={`rounded-xl border border-gray-200 border-t-4 ${t.border} bg-white px-5 py-5`}>
+            <p className={`text-[12px] uppercase tracking-widest font-semibold ${t.label}`}>{c.title}</p>
+            <ul className="mt-4 space-y-3">
+              {c.items.map((item) => (
+                <li key={item} className="flex gap-3 text-[14.5px] leading-relaxed text-gray-600">
+                  <span className={`mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full ${t.dot}`} />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
    OPTIMISED IMAGE WRAPPER
 ───────────────────────────────────────────── */
 
@@ -886,5 +1046,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     FigureGrid,
     ProjectFacts,
     VideoEmbed,
+    GuideCta,
+    CostBars,
+    SegmentedBar,
+    CompareColumns,
+    RentVsBuyCalculator,
   };
 }
