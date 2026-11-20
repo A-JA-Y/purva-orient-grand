@@ -1,0 +1,10 @@
+# Cloudflare static-asset redirects (copied into ./out by `next build`).
+# Mirrors the redirects() in next.config.ts, which Next can't apply to a static export.
+/about-godrej-golf-links    /about-purva-orient-grand          301
+/about-godrej-properties    /about-puravankara                 301
+/villas-configurations      /configurations                    301
+/brochure.pdf               /purva-orient-grand-brochure.pdf   301
+/master-plan.pdf            /purva-orient-grand-master-plan.pdf 301
+/blogs/godrej-golf-links-greater-noida-buyers-guide-2026                    /blogs  301
+/blogs/jewar-airport-godrej-golf-links-greater-noida-smart-investment-2026  /blogs  301
+/news/greater-noida-circle-rate-hike-godrej-golf-links-2026                 /news   301
