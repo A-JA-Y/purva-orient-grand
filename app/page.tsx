@@ -36,8 +36,6 @@ const EnquirySection = dynamic(() => import("@/components/EnquirySection"));
 const QRSection = dynamic(() => import("@/components/QRSections"));
 const StickyDownloadButton = dynamic(() => import("@/components/StickyButton"));
 const Footer = dynamic(() => import("@/components/Footer"));
-const FloatingWhatsapp = dynamic(()=>import("@/components/FloatingWhatsapp"));
-const FloatingCall = dynamic(()=>import("@/components/FloatingcallButton"));
 
 // Homepage-only canonical and og:url (kept out of the root layout so inner pages
 // never inherit the homepage canonical).
@@ -355,8 +353,6 @@ export default function Home() {
         <QRSection />
       </main>
       <StickyDownloadButton />
-      <FloatingCall />
-      <FloatingWhatsapp />
       <Footer />
     </div>
   );
