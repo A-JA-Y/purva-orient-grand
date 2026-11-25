@@ -5,7 +5,8 @@ module.exports = {
   // public/robots.txt is maintained by hand; don't let postbuild overwrite it.
   generateRobotsTxt: false,
   generateIndexSitemap: false,
-
+  // App Router icon files (app/icon.png, app/apple-icon.png) build as routes; they are not pages
+  exclude: ["/icon.png", "/apple-icon.png"],
 
   transform: async (config, path) => {
     return {

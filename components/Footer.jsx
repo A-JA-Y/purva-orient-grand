@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { footerNavLinks } from "@/data/siteNav";
+import ProjectNetwork from "@/components/ProjectNetwork";
+import RegulatoryLogos from "@/components/RegulatoryLogos";
 
 export default function Footer() {
   const half = Math.ceil(footerNavLinks.length / 2);
@@ -91,6 +93,19 @@ export default function Footer() {
             </a>
           </div>
         </div>
+
+        {/* Sister project websites */}
+        <ProjectNetwork
+          currentSiteIds={["purva-orient-grand"]}
+          className="mb-8 border-t border-[rgba(242,242,242,0.11)] pt-6"
+          headingClassName="text-[#c9a84c] text-[11px] font-semibold tracking-widest uppercase mb-4"
+          regionClassName="text-gray-400 text-[10px] font-semibold tracking-[0.18em] uppercase mb-2"
+          linkClassName="text-gray-300 text-xs leading-snug hover:text-[#DCA54A] transition-colors"
+          domainClassName="block text-[10px] text-gray-400"
+        />
+
+        {/* Regulator and industry body */}
+        <RegulatoryLogos registration="PRM/KA/RERA/1251/310/PR/210907/004299" className="mb-8 justify-center" />
 
         <div className="text-center mb-4">
           <p className="text-xs text-gray-400 leading-relaxed">

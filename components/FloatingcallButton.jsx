@@ -9,7 +9,7 @@ export default function FloatingCall() {
       aria-label="Call us at +91 63566 63535"
       title="Call +91 63566 63535"
       className="
-        fixed bottom-30 right-6 z-[1000]
+        fixed bottom-30 right-6 z-30
         flex items-center justify-center
         w-12 h-12
         rounded-full

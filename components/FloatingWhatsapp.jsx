@@ -13,7 +13,7 @@ export default function FloatingWhatsapp() {
       aria-label="Chat with us on WhatsApp at +91 63566 63535"
       title="+91 63566 63535"
       className="
-        fixed bottom-6 right-3 z-[1000]
+        fixed bottom-6 right-3 z-30
         flex items-center justify-center
         w-16 h-16
         rounded-full bg-[#25D366] text-white
