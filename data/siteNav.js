@@ -1,7 +1,6 @@
 export const siteNavLinks = [
   { label: "Home", href: "/" },
   { label: "About Purva Orient Grand", href: "/about-purva-orient-grand" },
-  { label: "Configurations", href: "/configurations" },
   { label: "Price", href: "/price" },
   { label: "Floor Plans", href: "/floor-plans" },
   { label: "Master Plan", href: "/master-plan" },

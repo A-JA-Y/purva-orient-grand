@@ -2,7 +2,10 @@
 # Mirrors the redirects() in next.config.ts, which Next can't apply to a static export.
 /about-godrej-golf-links    /about-purva-orient-grand          301
 /about-godrej-properties    /about-puravankara                 301
-/villas-configurations      /configurations                    301
+/villas-configurations      /floor-plans                       301
+/villas-configurations/     /floor-plans                       301
+/configurations             /floor-plans                       301
+/configurations/            /floor-plans                       301
 /brochure.pdf               /purva-orient-grand-brochure.pdf   301
 /master-plan.pdf            /purva-orient-grand-master-plan.pdf 301
 /blogs/godrej-golf-links-greater-noida-buyers-guide-2026                    /blogs  301

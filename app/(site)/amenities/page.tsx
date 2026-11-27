@@ -531,10 +531,10 @@ export default function AmenitiesPage() {
               View Pricing →
             </Link>
             <Link
-              href="/configurations"
+              href="/floor-plans"
               className="text-[#DCA54A] hover:underline font-medium"
             >
-              3 &amp; 4 BHK Configurations →
+              3 &amp; 4 BHK Floor Plans →
             </Link>
           </div>
         </div>
