@@ -327,7 +327,6 @@ export default function AboutPurvaOrientGrandPage() {
               </Link>
             </div>
             <div className="flex flex-wrap gap-4 text-sm">
-              <Link href="/configurations" className="text-[#c8922a] hover:underline">Configurations</Link>
               <Link href="/price" className="text-[#c8922a] hover:underline">Price list</Link>
               <Link href="/floor-plans" className="text-[#c8922a] hover:underline">Floor plans</Link>
               <Link href="/master-plan" className="text-[#c8922a] hover:underline">Master plan</Link>

@@ -450,7 +450,7 @@ export default function MasterPlanPage() {
               Ninety-seven homes, and most of them are already gone.{" "}
               <Link href="/contact-us" className="text-[#c8922a] hover:underline font-semibold">Check remaining inventory</Link>{" "}
               or compare the grades on the{" "}
-              <Link href="/configurations" className="text-[#c8922a] hover:underline font-semibold">configurations page</Link>.
+              <Link href="/floor-plans" className="text-[#c8922a] hover:underline font-semibold">floor plans page</Link>.
             </p>
           </div>
         </div>

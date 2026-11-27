@@ -27,7 +27,10 @@ const nextConfig: NextConfig = {
     return [
       { source: "/about-godrej-golf-links", destination: "/about-purva-orient-grand", permanent: true },
       { source: "/about-godrej-properties", destination: "/about-puravankara", permanent: true },
-      { source: "/villas-configurations", destination: "/configurations", permanent: true },
+      { source: "/villas-configurations", destination: "/floor-plans", permanent: true },
+      // The old /configurations page was a leftover Godrej Golf Links page from the
+      // site template; the grades and areas live on /floor-plans.
+      { source: "/configurations", destination: "/floor-plans", permanent: true },
       { source: "/brochure.pdf", destination: "/purva-orient-grand-brochure.pdf", permanent: true },
       { source: "/master-plan.pdf", destination: "/purva-orient-grand-master-plan.pdf", permanent: true },
       { source: "/blogs/godrej-golf-links-greater-noida-buyers-guide-2026", destination: "/blogs", permanent: true },

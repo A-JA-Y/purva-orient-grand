@@ -279,7 +279,6 @@ const siteNavigationSchema = {
   "@type": "ItemList",
   itemListElement: [
     ["About Purva Orient Grand", "/about-purva-orient-grand"],
-    ["Configurations", "/configurations"],
     ["Price", "/price"],
     ["Floor Plans", "/floor-plans"],
     ["Master Plan", "/master-plan"],
